@@ -1,0 +1,29 @@
+name: Salesforce CD Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install --global @salesforce/cli
+
+      - name: Authenticate to QA Org
+        run: |
+          echo "${{ secrets.QA_SFDX_AUTH_URL }}" > authfile.txt
+          sf org login sfdx-url --sfdx-url-file authfile.txt --alias QAOrg
+          rm authfile.txt
+
+      - name: Deploy Salesforce metadata to QA
+        run: |
+          sf project deploy start \
+            --metadata "CustomField:Project__c.Project_Code__c" \
+            --target-org QAOrg
