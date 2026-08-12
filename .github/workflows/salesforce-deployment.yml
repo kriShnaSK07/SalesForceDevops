@@ -25,5 +25,5 @@ jobs:
       - name: Deploy Salesforce metadata to QA
         run: |
           sf project deploy start \
-            --metadata "CustomField:Project__c.Project_Code__c" \
+            --metadata "CustomField:Project__c.Fake_Field__c" \
             --target-org QAOrg
