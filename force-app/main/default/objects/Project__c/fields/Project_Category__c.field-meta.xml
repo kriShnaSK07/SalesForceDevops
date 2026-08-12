@@ -3,7 +3,7 @@
     <fullName>Project_Category__c</fullName>
     <externalId>false</externalId>
     <label>Project Category</label>
-    <length>500</length>
+    <length>100</length>
     <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
